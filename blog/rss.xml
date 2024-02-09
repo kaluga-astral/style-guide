@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>Astral-Soft Style Guide Blog</title>
+        <link>https://kaluga-astral.github.io/style-guide/blog</link>
+        <description>Astral-Soft Style Guide Blog</description>
+        <lastBuildDate>Fri, 09 Feb 2024 18:34:01 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
+        <item>
+            <title><![CDATA[main]]></title>
+            <link>https://kaluga-astral.github.io/style-guide/blog/main</link>
+            <guid>https://kaluga-astral.github.io/style-guide/blog/main</guid>
+            <pubDate>Fri, 09 Feb 2024 18:34:01 GMT</pubDate>
+            <description><![CDATA[hello]]></description>
+            <content:encoded><![CDATA[<p>hello</p>]]></content:encoded>
+        </item>
+    </channel>
+</rss>
