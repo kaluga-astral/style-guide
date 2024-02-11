@@ -71,7 +71,7 @@ const config: Config = {
           items: [
             {
               label: 'React',
-              to: '/docs/react',
+              to: '/docs/category/react',
             },
           ],
         },

@@ -10,7 +10,15 @@
   overflow: hidden;
   flex-grow: 1;
 
-  background-color: var(--ifm-color-primary-lightest);
+  background-color: var(--ifm-background-color);
+}
+
+.title {
+  color: var(--ifm-color-primary);
+}
+
+.subtitle {
+  color: var(--ifm-font-color-base);
 }
 
 @media screen and (max-width: 996px) {
