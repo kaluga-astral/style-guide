@@ -124,7 +124,7 @@ const config: Config = {
       // Public API key: it is safe to commit it
       apiKey: process.env.ALGOLIA_API_KEY || 'test',
 
-      indexName: 'ASTRAL_STYLE_GUIDE',
+      indexName: 'STYLE_GUIDE',
 
       // Optional: see doc section below
       contextualSearch: true,
