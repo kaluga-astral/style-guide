@@ -1,6 +1,7 @@
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import * as process from "process";
 
 const config: Config = {
   title: 'Astral.Frontend Style Guide',
@@ -114,6 +115,30 @@ const config: Config = {
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
+    },
+    themes: ['@docusaurus/theme-search-algolia'],
+    algolia: {
+      // The application ID provided by Algolia
+      appId: process.env.ALGOLIA_APP_ID || 'test',
+
+      // Public API key: it is safe to commit it
+      apiKey: process.env.ALGOLIA_API_KEY || 'test',
+
+      indexName: 'ASTRAL_STYLE_GUIDE',
+
+      // Optional: see doc section below
+      contextualSearch: true,
+
+      // Optional: Replace parts of the item URLs from Algolia. Useful when using the same search index for multiple deployments using a different baseUrl. You can use regexp or string in the `from` param. For example: localhost:3000 vs myCompany.com/docs
+      replaceSearchResultPathname: {
+        from: '/style-guide/', // or as RegExp: /\/docs\//
+        to: '/',
+      },
+
+      // Optional: path for search page that enabled by default (`false` to disable it)
+      searchPagePath: 'search',
+
+      //... other Algolia params
     },
   } satisfies Preset.ThemeConfig,
 };
