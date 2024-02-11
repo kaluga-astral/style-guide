@@ -3,8 +3,8 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-  title: 'Astral-Soft Style Guide',
-  tagline: 'Dinosaurs are cool',
+  title: 'Astral.Frontend Style Guide',
+  tagline: 'Стандарты frontend-кода Астрал-Софт',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -31,14 +31,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-        },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/kaluga-astral/style-guide/tree/main/docs',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -49,23 +42,22 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    image: 'img/logo.png',
     navbar: {
-      title: 'My Site',
+      title: 'Frontend Style Guide',
       logo: {
-        alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        alt: 'Логотип Астрал-Софт',
+        src: 'img/logo.png',
       },
       items: [
         {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Tutorial',
+          label: 'Docs',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/kaluga-astral/style-guide',
           label: 'GitHub',
           position: 'right',
         },
@@ -75,46 +67,49 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Rules',
           items: [
             {
-              label: 'Tutorial',
-              to: '/docs/intro',
+              label: 'React',
+              to: '/docs/react',
             },
           ],
         },
         {
-          title: 'Community',
+          title: 'Eslint configs',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              label: '@astral/eslint-config-react-ts',
+              to: 'https://www.npmjs.com/package/@astral/eslint-config-react-ts',
             },
             {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
+              label: '@astral/eslint-config-node',
+              to: 'https://www.npmjs.com/package/@astral/eslint-config-node',
             },
             {
-              label: 'Twitter',
-              href: 'https://twitter.com/docusaurus',
+              label: '@astral/eslint-config-node-ts',
+              to: 'https://www.npmjs.com/package/@astral/eslint-config-node-ts',
+            },
+            {
+              label: '@astral/eslint-config-vitest',
+              to: 'https://www.npmjs.com/package/@astral/eslint-config-vitest',
+            },
+            {
+              label: '@astral/eslint-config-react-vitest',
+              to: 'https://www.npmjs.com/package/@astral/eslint-config-react-vitest',
             },
           ],
         },
         {
-          title: 'More',
+          title: 'Stylelint configs',
           items: [
             {
-              label: 'Blog',
-              to: '/blog',
-            },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              label: '@astral/stylelint-config-styled',
+              to: 'https://www.npmjs.com/package/@astral/stylelint-config-styled',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,

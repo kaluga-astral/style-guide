@@ -8,6 +8,9 @@
   text-align: center;
   position: relative;
   overflow: hidden;
+  flex-grow: 1;
+
+  background-color: var(--ifm-color-primary-lightest);
 }
 
 @media screen and (max-width: 996px) {
