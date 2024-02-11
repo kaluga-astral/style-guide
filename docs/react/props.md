@@ -1,14 +1,14 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 import { RedText, GreenText } from '@site/src/components';
 
-# Вложенные компоненты
+# Props
 
 ## Все вложенные компоненты определяются в корне главного компонента
 
-**<GreenText>Valid</GreenText>**
+**✅Valid**
 
 ```tsx
 export function GreenText({ children }: PropsWithChildren) {
@@ -18,5 +18,4 @@ export function GreenText({ children }: PropsWithChildren) {
 }
 ```
 
-**<RedText>Invalid</RedText>**
-
+**❌Invalid**
