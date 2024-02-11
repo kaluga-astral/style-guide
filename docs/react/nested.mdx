@@ -1,0 +1,22 @@
+---
+sidebar_position: 1
+---
+
+import { RedText, GreenText } from '@site/src/components';
+
+# Вложенные компоненты
+
+## Все вложенные компоненты определяются в корне главного компонента
+
+**<GreenText>Valid</GreenText>**
+
+```tsx
+export function GreenText({ children }: PropsWithChildren) {
+  return (
+    <span className={styles['green-text']}>{children}</span>
+  );
+}
+```
+
+**<RedText>Invalid</RedText>**
+
