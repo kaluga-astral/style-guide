@@ -141,3 +141,34 @@ type Props = {
   Header: FunctionComponent;
 };
 ```
+
+## Все props обработчики с префиксом ```on```
+
+**✨ Мотивация**
+
+Стандартизация именования обработчиков.
+
+**🤖 Автоматизация**
+
+Не имплементировано в eslint-config.
+
+**✅ Valid**
+
+```ts
+type Props = {
+  onClick: () => void;
+  onChange: () => void;
+  onDelete: () => void;
+};
+```
+
+**❌ Invalid**
+
+```ts
+type Props = {
+  handleClick: () => void;
+  remove: () => void;
+  clickHandler: () => void;
+};
+```
+
