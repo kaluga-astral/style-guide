@@ -61,7 +61,6 @@ const Cart = ({ list, onSetSum }: Props) => {
 
 Не имплементировано в eslint-config.
 
-
 **❌ Invalid**
 
 ```tsx
@@ -91,3 +90,75 @@ const Cart = ({ list, isSuccess, userName, onPay }: Props) => {
   );
 };
 ```
+
+
+## Запрещена логика в циклах внутри `jsx` разметки
+
+Логику в циклах необходимо переносить в отдельный компонент или в тело функции компонента.
+
+**✨ Мотивация**
+
+Упрощение восприятия `jsx` компонента.
+
+**🤖 Автоматизация**
+
+Не имплементировано в eslint-config.
+
+
+**❌ Invalid**
+
+```tsx
+const MainPage = ({ list }: Props) => {
+  return (
+    <section>
+      <Header />
+      <Filters />
+      <ul>
+        {list.map((item) => {
+          // Сложность восприятия будет увеличиваться по мере роста логики компонента
+          const price = formatPriceToView(item.price);
+          const nickName = [item.name, item.surname].join(' ');
+
+          return (
+            <li>
+              <Typography>{price}</Typography>
+              <Typography>{nickName}</Typography>
+            </li>
+          );
+        })}
+      </ul>
+      </section>
+  );
+};
+```
+
+**✅ Valid**
+
+```tsx
+const ListItem = ({ itemInfo }: ListItemProps) => {
+  const price = formatPriceToView(item.price);
+  const nickName = [item.name, item.surname].join(' ');
+
+  return (
+    <li>
+      <Typography>{price}</Typography>
+      <Typography>{nickName}</Typography>
+    </li>
+  );
+};
+
+const MainPage = ({ list }: MainPageProps) => {
+  return (
+    <section>
+      <Header />
+      <Filters />
+      <ul>
+        {list.map((item) => (
+            <ListItem itemInfo={item} />
+        ))}
+      </ul>
+    </section>
+  );
+};
+```
+
