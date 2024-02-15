@@ -31,9 +31,9 @@ export const UserInfo = ({ title, userName, onClick }: Props) => {
 
 ### ❌ Invalid
 
-```UserInfo.tsx```
+```UserInfo/UserInfo.tsx```
 ```tsx
-import { type ButtonProps } from './types';
+import { type UserInfoProps } from './types';
 
 export const UserInfo = ({ title, userName, onClick }: ButtonProps) => {
   return (
@@ -46,8 +46,9 @@ export const UserInfo = ({ title, userName, onClick }: ButtonProps) => {
 };
 ```
 
+```UserInfo/types.ts```
 ```ts
-export type ButtonProps = {
+export type UserInfoProps = {
   title: string;
   userName: string;
   onClick: () => void;
