@@ -222,24 +222,6 @@ import { StyledButton } from './styles';
 const Button = () => <StyledButton />;
 ```
 
----
-
-```ts
-import { Button } from '@astral/ui';
-
-// Семантически данный вариант тоже корректный
-export const ButtonRoot = styled(AstralButton)`
-  color: red;
-`;
-```
-
-```Button.tsx```
-```tsx
-import { ButtonRoot } from './styles';
-
-const Button = () => <ButtonRoot />;
-```
-
 **❌ Invalid**
 
 ```ts
@@ -267,4 +249,22 @@ export const Button = styled(AstralButton)`
 import { Button as StyledButton } from './styles';
 
 const Button = () => <StyledButton />;
+```
+
+---
+
+```ts
+import { Button } from '@astral/ui';
+
+// Семантически обертка не является корнем компонента или его основой, это просто обертка для Button
+export const ButtonRoot = styled(AstralButton)`
+  color: red;
+`;
+```
+
+```Button.tsx```
+```tsx
+import { ButtonRoot } from './styles';
+
+const Button = () => <ButtonRoot />;
 ```
