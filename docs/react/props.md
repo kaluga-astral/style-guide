@@ -83,7 +83,7 @@ export type UserCardProps = {
 import { type UserCardProps } from '../types';
 
 export type HeaderProps = {
-    title: UserInfoProps['title'];
+    title: UserCardProps['headerTitle'];
 };
 ```
 
