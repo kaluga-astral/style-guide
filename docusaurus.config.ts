@@ -55,7 +55,7 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          href: '/docs/category/Правила',
+          href: '/docs/category/правила',
           label: 'Правила',
         },
         {
