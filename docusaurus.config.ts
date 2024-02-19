@@ -43,7 +43,7 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: 'img/logo.png',
+    image: 'img/social-card.png',
     navbar: {
       title: 'Frontend Style Guide',
       logo: {
@@ -55,7 +55,7 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          href: '/docs/category/Правила',
+          href: '/docs/category/правила',
           label: 'Правила',
         },
         {
