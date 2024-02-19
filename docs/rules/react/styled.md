@@ -257,7 +257,7 @@ const Button = () => <StyledButton />;
 import { Button } from '@astral/ui';
 
 // Семантически обертка не является корнем компонента или его основой, это просто обертка для Button
-export const ButtonRoot = styled(AstralButton)`
+export const ButtonRoot = styled(Button)`
   color: red;
 `;
 ```

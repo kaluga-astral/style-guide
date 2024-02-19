@@ -36,11 +36,11 @@ const Cart = ({ list, onSetSum }: Props) => {
 
 const Cart = ({ list, onSetSum }: Props) => {
   // Это не обработчик
-  const hadleCalcSum = () => list.reduce((sum, { price }) => sum + price, 0);
+  const handleCalcSum = () => list.reduce((sum, { price }) => sum + price, 0);
 
   // Обработчик не по формату
   const clickPayHandler = () => {
-    onSetSum(calcSum(list));
+    onSetSum(handleCalcSum(list));
   };
 
   return (
