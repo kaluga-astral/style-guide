@@ -1,4 +1,4 @@
-# Import/Export Es Modules
+# Import/Export ES Modules
 
 ## Необходимо отдавать предпочтение именованным экспортам
 
