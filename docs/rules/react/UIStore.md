@@ -1,10 +1,10 @@
-# VM Store
+# UI Store
 
-Правила для **View-Model Store** из паттерна **MVVM**.
+Правила для stores, содержащих логику компонента.
 
-Для stores, не являющимися **View-Model Store** описаны [отдельные правила](./stores).
+Для stores, не являющимися UIStore описаны [отдельные правила](./stores).
 
-## VMStore должен находится внутри директории компонента в отдельной директории
+## UIStore должен находится внутри директории компонента в отдельной директории
 
 **✨ Мотивация**
 
@@ -20,8 +20,8 @@
 
 ```
 ├── Cart/
-|    ├── VMStore/ 
-|    |    └── VMStore.ts
+|    ├── UIStore/ 
+|    |    └── UIStore.ts
 |    |    └── index.ts
 |    ├── Cart.tsx
 |    └── index.ts
@@ -41,7 +41,7 @@
 ```
 ├── Cart/
 |    ├── stores
-|    |    ├── VMStore/
+|    |    ├── UIStore/
 |    |    └── index.ts
 |    ├── Cart.tsx
 |    └── index.ts
@@ -54,7 +54,7 @@
 |    └── index.ts
 ```
 
-## VMStore и его директория должны называться `VMStore`
+## UIStore и его директория должны называться `UIStore`
 
 **✨ Мотивация**
 
@@ -68,18 +68,18 @@
 
 ```
 ├── Cart/
-|    ├── VMStore/ 
-|    |    └── VMStore.ts
+|    ├── UIStore/ 
+|    |    └── UIStore.ts
 |    |    └── index.ts
 |    ├── Cart.tsx
 |    └── index.ts
 ```
 
-```Cart/VMStore/VMStore.ts```
+```Cart/UIStore/UIStore.ts```
 ```ts
-export class VMStore {};
+export class UIStore {};
 
-export const createVMStore = () => new VMStore();
+export const createUIStore = () => new UIStore();
 ```
 
 **❌ Invalid**
