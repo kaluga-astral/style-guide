@@ -40,3 +40,52 @@
 |    ├── Button.tsx
 |    └── index.ts
 ```
+
+## Для `React.Fragment` предпочтительна краткая нотация
+
+Исключение, когда должна использоваться расширенная нотация - необходим `key` prop.
+
+**✨ Мотивация**
+
+Уменьшение количество кода в компоненте.
+
+**🤖 Автоматизация**
+
+Имплементировано в [@astral/eslint-config-react-ts](https://www.npmjs.com/package/@astral/eslint-config-react-ts).
+
+**✅ Valid**
+
+```tsx
+const Info = () => {
+  return (
+    <>
+      <Typography>Имя</Typography>
+      <Typography>Фамилия</Typography>
+    </>
+  );
+};
+```
+
+```tsx
+export const List = ({ list }: Props) => {
+  return list.map(({ name, surname }) => {
+    <Fragment key={name}>
+      <Typography>Имя</Typography>
+      <Typography>Фамилия</Typography>
+    </Fragment>;
+  });
+};
+```
+
+**❌ Invalid**
+
+```tsx
+export const Info = () => {
+  return (
+    <Fragment>
+      <Typography>Имя</Typography>
+      <Typography>Фамилия</Typography>
+    </Fragment>
+  );
+};
+```
