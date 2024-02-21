@@ -41,6 +41,38 @@
 |    └── index.ts
 ```
 
+## Имена компонентов и их директорий должны соответствовать PascalCase
+
+**✨ Мотивация**
+
+Стандартизация имен компонентов.
+
+**🤖 Автоматизация**
+
+Не имплементировано в eslint-config.
+
+**✅ Valid**
+
+```
+├── UserInfo/
+|    ├── UserInfo.tsx
+|    └── index.ts
+├── ButtonGroup/
+|    ├── ButtonGroup.tsx
+|    └── index.ts
+```
+
+**❌ Invalid**
+
+```
+├── userInfo/
+|    ├── userInfo.tsx
+|    └── index.ts
+├── button-group/
+|    ├── button-group.tsx
+|    └── index.ts
+```
+
 ## Для `React.Fragment` предпочтительна краткая нотация
 
 Исключение, когда должна использоваться расширенная нотация - необходим `key` prop.
