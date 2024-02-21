@@ -91,7 +91,6 @@ const Cart = ({ list, isSuccess, userName, onPay }: Props) => {
 };
 ```
 
-
 ## Запрещена логика в циклах внутри `jsx` разметки
 
 Логику в циклах необходимо переносить в отдельный компонент или в тело функции компонента.
@@ -103,7 +102,6 @@ const Cart = ({ list, isSuccess, userName, onPay }: Props) => {
 **🤖 Автоматизация**
 
 Не имплементировано в eslint-config.
-
 
 **❌ Invalid**
 
@@ -158,6 +156,87 @@ const MainPage = ({ list }: MainPageProps) => {
         ))}
       </ul>
     </section>
+  );
+};
+```
+
+## Запрещена реализация обработчиков в `jsx`
+
+**✨ Мотивация**
+
+Вынос обработчиков из jsx позволяет держать всю логику компонента в одном месте.
+
+**🤖 Автоматизация**
+
+Не имплементировано в eslint-config.
+
+**✅ Valid**
+
+```tsx
+const Cart = ({ list, onRemoveProduct }: Props) => {
+  const handleRemoveProduct = (id: string) => () => {
+    onRemoveProduct(id);
+  };
+
+  return (
+    <div>
+      <ul>
+        {list.map(({ id }) => (
+          <li>
+            <Button onClick={handleRemoveProduct(id)}>Удалить</Button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+```
+
+**❌ Invalid**
+
+```tsx
+const Cart = ({ list, onRemoveProduct }: Props) => {
+  return (
+    <div>
+      <ul>
+        {list.map(({ id }) => (
+          <li>
+            <Button onClick={() => onRemoveProduct(id)}>Удалить</Button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+```
+
+### Разрешен прямой проброс обработчика в компонент
+
+**✅ Valid**
+
+```tsx
+const Cart = ({ onPay }: Props) => {
+  return (
+    <div>
+      <Button onClick={onPay}>Оплатить</Button>
+    </div>
+  );
+};
+```
+
+**❌ Invalid**
+
+```tsx
+const Cart = ({ onPay }: Props) => {
+    // Лишний код, который ничего не делает:
+  const handlePay = () => {
+    onPay();
+  };
+
+  return (
+    <div>
+      <Button onClick={handlePay}>Оплатить</Button>
+    </div>
   );
 };
 ```
