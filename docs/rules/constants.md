@@ -68,3 +68,129 @@ const calc = (a: number, b: number, factor: number = defaultFactor) => {
 ```ts
 export const apiUrl = 'https://astral.ru';
 ```
+
+## Константы, используемые вне контекста текущего es module, выносятся в отдельный файл
+
+Если константа используется вне контекста текущего es module, то ее необходимо вынести в файл `constants`.
+
+**🤖 Автоматизация**
+
+Не имплементировано в eslint-config.
+
+**✨ Мотивация**
+
+Позволяет избежать циклических зависимостей.
+
+**✅ Valid**
+
+React-component:
+
+```
+├── Info/
+|    ├── Header/ 
+|    |    └── Header.tsx
+|    |    └── index.ts
+|    ├── Info.tsx
+|    ├── constants.ts
+|    └── index.ts
+```
+
+```Info/Info.tsx```
+```tsx
+import { Header } from './Header';
+import { DEFAULT_NAME } from './constants';
+
+export const Info = () => {
+  return (
+    <section>
+      <Header />
+      <span>{DEFAULT_NAME}</span>
+    </section>
+  );
+};
+```
+
+```Info/Header/Header.tsx```
+```tsx
+import { DEFAULT_NAME } from '../constants';
+
+export const Header = () => {
+  return (
+    <header>
+      <span>{DEFAULT_NAME}</span>
+    </header>
+  );
+};
+```
+
+---
+
+Utils:
+
+```
+├── utils/
+|    ├── summ/ 
+|    ├── pow/
+|    ├── constants.ts
+|    └── index.ts
+```
+
+```utils/summ/summ.ts```
+```ts
+import { DEFAULT_FACTOR } from '../constants';
+
+export const summ = (a: number, b: number, factor: number = DEFAULT_FACTOR) => {
+  const summ = a + b;
+
+  return summ * factor;
+};
+```
+
+```utils/pow/pow.ts```
+```ts
+import { DEFAULT_FACTOR } from '../constants';
+
+export const pow = (value: number, exponent: number = DEFAULT_FACTOR) =>
+    Math.pow(value, exponent);
+```
+
+**❌ Invalid**
+
+```
+├── Info/
+|    ├── Header/ 
+|    |    └── Header.tsx
+|    |    └── index.ts
+|    ├── Info.tsx
+|    └── index.ts
+```
+
+```Info/Info.tsx```
+```tsx
+import { Header } from './Header';
+
+export const DEFAULT_NAME = 'Вася';
+
+export const Info = () => {
+  return (
+    <section>
+      <Header />
+      <span>{DEFAULT_NAME}</span>
+    </section>
+  );
+};
+```
+
+```Info/Header/Header.tsx```
+```tsx
+// Циклическая зависимость с Info.tsx
+import { DEFAULT_NAME } from '../Info';
+
+const Header = () => {
+  return (
+    <header>
+      <span>{DEFAULT_NAME}</span>
+    </header>
+  );
+};
+```
