@@ -161,7 +161,7 @@ import { type UserInfo } from './UserService';
 |    ├── enums.ts
 |    ├── types.ts
 |    ├── UserService.ts
-|    ├── UserService.test.ts
+|    └── UserService.test.ts
 ```
 
 ---
@@ -172,4 +172,66 @@ import { UserCard } from './featues/UserCard/UserCard';
 import { type UserInfo } from './UserService/types';
 
 ...
+```
+
+## Запрещены импорты без указания целевого es module
+
+Пример:
+```ts
+import { UserService } from '../';
+```
+
+**🤖 Автоматизация**
+
+Не имплементировано в eslint-config.
+
+**✨ Мотивация**
+
+Импорты без целевого модуля создают циклические зависимости.
+
+**✅ Valid**
+
+```
+├── CartService/
+├── UserService/
+└── index.ts
+```
+
+```index.ts```
+```ts
+export * from './CartService';
+export * from './UserService';
+```
+
+```CartService/CartService.ts```
+```ts
+import { UserService } from '../UserService';
+
+class CartService {
+  constructor(private readonly userService: UserService) {}
+}
+```
+
+**❌ Invalid**
+
+```
+├── CartService/
+├── UserService/
+└── index.ts
+```
+
+```index.ts```
+```ts
+export * from './CartService';
+export * from './UserService';
+```
+
+```CartService/CartService.ts```
+```ts
+// Из-за того, что импорт идет через index.ts файл может образоваться циклическая зависимость
+import { UserService } from '../';
+
+class CartService {
+  constructor(private readonly userService: UserService) {}
+}
 ```
