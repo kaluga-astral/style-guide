@@ -1,6 +1,8 @@
-# Нейминг параметров, свойств
+# Переменные, параметры, свойства
 
-## Boolean свойства и параметры должны иметь префикс, указывающий на принадлежность к Boolean
+## Boolean переменные должны иметь префикс, указывающий на принадлежность к Boolean
+
+Правило распространяется на переменные, параметры, свойства.
 
 **✨ Мотивация**
 
@@ -11,6 +13,12 @@
 Не имплементировано в eslint-config.
 
 **✅ Valid**
+
+```ts
+const isShow = Boolean(user.id);
+const wasRemoved = !Boolean(user);
+const hasID = Boolean(user.id);
+```
 
 ```ts
 const calcSum = (product: Product, hasDiscount: boolean) => {}
