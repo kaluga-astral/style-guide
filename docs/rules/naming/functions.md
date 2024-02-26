@@ -118,14 +118,14 @@ const checkRemoved = (obj?: Record<string, unknown>): obj is undefined =>
 ```ts
 class Example {
   public getDraft = () => {};
-  public getDraftsList = () => {};
+  public getDraftList = () => {};
   
   public sendDraft = () => {};
-  public sendDraftsList = () => {};
-  public sendAllDraftsList = () => {};
+  public sendDraftList = () => {};
+  public sendAllDraftList = () => {};
 
   public calcDraftSum = () => {};
-  public calcDraftsListSum = () => {};
+  public calcDraftListSum = () => {};
 }
 ```
 
@@ -134,7 +134,7 @@ class Example {
 ```tsx
 const DraftScreen = () => {};
 
-const DraftsListScreen = () => {};
+const DraftListScreen = () => {};
 ```
 
 **❌ Invalid**
