@@ -18,6 +18,7 @@
 |    |    |── utils/
 |    |    |── types.ts
 |    |    |── constants.ts
+|    |    |── dto.ts
 |    |    |── UserRepository.ts
 |    |    |── UserRepository.test.ts
 |    |    └── index.ts
@@ -40,6 +41,39 @@ export class UserRepository {}
 ```repositories/UserRepository.ts```
 ```ts
 export class UserRep {}
+```
+
+## Название директории Repository в PascalCase
+
+**✨ Мотивация**
+
+PascalCase указывает на то, что Repository является классом.
+
+**🤖 Автоматизация**
+
+Не имплементировано в eslint-config
+
+**✅ Valid**
+
+```
+├── repositories/
+|    ├── UserRepository/ 
+|    |    |── UserRepository.ts
+|    |    └── index.ts
+|    └── index.ts
+```
+
+**❌ Invalid**
+
+```
+├── repositories/
+|    ├── userRepository/ 
+|    |    |── userRepository.ts
+|    |    └── index.ts
+|    ├── user-repository/ 
+|    |    |── user-repository.ts
+|    |    └── index.ts
+|    └── index.ts
 ```
 
 ## Ключи кэша должны быть свойствами класса
