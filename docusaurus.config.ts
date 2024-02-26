@@ -140,27 +140,10 @@ const config: Config = {
     },
     themes: ['@docusaurus/theme-search-algolia'],
     algolia: {
-      // The application ID provided by Algolia
       appId: process.env.ALGOLIA_APP_ID || 'test',
-
-      // Public API key: it is safe to commit it
       apiKey: process.env.ALGOLIA_API_KEY || 'test',
-
-      indexName: 'STYLE_GUIDE',
-
-      // Optional: see doc section below
+      indexName: 'style-guide',
       contextualSearch: true,
-
-      // Optional: Replace parts of the item URLs from Algolia. Useful when using the same search index for multiple deployments using a different baseUrl. You can use regexp or string in the `from` param. For example: localhost:3000 vs myCompany.com/docs
-      replaceSearchResultPathname: {
-        from: '/style-guide/', // or as RegExp: /\/docs\//
-        to: '/',
-      },
-
-      // Optional: path for search page that enabled by default (`false` to disable it)
-      searchPagePath: 'search',
-
-      //... other Algolia params
     },
   } satisfies Preset.ThemeConfig,
 };

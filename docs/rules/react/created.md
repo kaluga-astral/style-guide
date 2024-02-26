@@ -40,3 +40,88 @@
 |    ├── Button.tsx
 |    └── index.ts
 ```
+
+## Имена компонентов и их директорий должны соответствовать PascalCase
+
+**✨ Мотивация**
+
+Стандартизация имен компонентов.
+
+**🤖 Автоматизация**
+
+Не имплементировано в eslint-config.
+
+**✅ Valid**
+
+```
+├── UserInfo/
+|    ├── UserInfo.tsx
+|    └── index.ts
+├── ButtonGroup/
+|    ├── ButtonGroup.tsx
+|    └── index.ts
+```
+
+**❌ Invalid**
+
+```
+├── userInfo/
+|    ├── userInfo.tsx
+|    └── index.ts
+├── button-group/
+|    ├── button-group.tsx
+|    └── index.ts
+```
+
+## Для `React.Fragment` предпочтительна краткая нотация
+
+Исключение, когда должна использоваться расширенная нотация - необходим `key` prop.
+
+**✨ Мотивация**
+
+Уменьшение количества кода в компоненте.
+
+**🤖 Автоматизация**
+
+Имплементировано в [@astral/eslint-config-react-ts](https://www.npmjs.com/package/@astral/eslint-config-react-ts).
+
+**✅ Valid**
+
+```tsx
+const Info = () => {
+  return (
+    <>
+      <Typography>Имя</Typography>
+      <Typography>Фамилия</Typography>
+    </>
+  );
+};
+```
+
+```tsx
+export const List = ({ list }: Props) => {
+  return list.map(({ name, surname }) => {
+    <Fragment key={name}>
+      <Typography>Имя</Typography>
+      <Typography>Фамилия</Typography>
+    </Fragment>;
+  });
+};
+```
+
+**❌ Invalid**
+
+```tsx
+export const Info = () => {
+  return (
+    <Fragment>
+      <Typography>Имя</Typography>
+      <Typography>Фамилия</Typography>
+    </Fragment>
+  );
+};
+```
+
+## Работа с constants
+
+Единые правила описаны в разделе [Constants](../constants).
