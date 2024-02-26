@@ -103,7 +103,7 @@ const checkRemoved = (obj?: Record<string, unknown>): obj is undefined =>
 
 ## Запрещено использовать в названиях существительные во множественном числе только с добавлением окончания
 
-Необходимо добавлять уточняющее слово: `getDrafts` -> `getDraftsList`.
+Необходимо добавлять уточняющее слово: `getDrafts` -> `getDraftList`.
 
 **✨ Мотивация**
 
