@@ -101,3 +101,64 @@ const checkRemoved = (obj?: Record<string, unknown>): obj is undefined =>
     obj === undefined;
 ```
 
+## Запрещено использовать в названиях существительные во множественном числе только с добавлением окончания
+
+Необходимо добавлять уточняющее слово: `getDrafts` -> `getDraftsList`.
+
+**✨ Мотивация**
+
+Из-за существительных во множественном числе с добавлением окончания (например, `s`) сложно отличить функцию, работающую с одной сущностью и несколькими.
+
+**🤖 Автоматизация**
+
+Не имплементировано в eslint-config.
+
+**✅ Valid**
+
+```ts
+class Example {
+  public getDraft = () => {};
+  public getDraftsList = () => {};
+  
+  public sendDraft = () => {};
+  public sendDraftsList = () => {};
+  public sendAllDraftsList = () => {};
+
+  public calcDraftSum = () => {};
+  public calcDraftsListSum = () => {};
+}
+```
+
+---
+
+```tsx
+const DraftScreen = () => {};
+
+const DraftsListScreen = () => {};
+```
+
+**❌ Invalid**
+
+Сложно визуально найти отличия в названиях из-за разницы в одну букву.
+
+```ts
+class Example {
+  public getDraft = () => {};
+  public getDrafts = () => {};
+  
+  public sendDraft = () => {};
+  public sendDrafts = () => {};
+  public sendAllDrafts = () => {};
+
+  public calcDraftSum = () => {};
+  public calcDraftsSum = () => {};
+}
+```
+
+---
+
+```tsx
+const DraftScreen = () => {};
+
+const DraftsScreen = () => {};
+```
