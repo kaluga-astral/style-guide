@@ -19,6 +19,7 @@
 |    |    |── types.ts
 |    |    |── constants.ts
 |    |    |── dto.ts
+|    |    |── faker.ts
 |    |    |── UserRepository.ts
 |    |    |── UserRepository.test.ts
 |    |    └── index.ts
@@ -43,7 +44,7 @@ export class UserRepository {}
 export class UserRep {}
 ```
 
-## Название директории Repository в PascalCase
+## Название директорий Repository должно соответствовать PascalCase
 
 **✨ Мотивация**
 
