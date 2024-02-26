@@ -142,8 +142,8 @@ export class CartStore {};
 ```ts
 import { SwitchStore } from './stores';
 
-export class Store {
-    constructor(private readonly switchStore: SwitchStore) {}
+export class UIStore {
+  constructor(private readonly switchStore: SwitchStore) {}
 };
 ```
 
@@ -169,5 +169,97 @@ import { SwitchStore } from '../stores';
 
 export class Store {
     constructor(private readonly switchStore: SwitchStore) {}
+};
+```
+
+## Имена методов UIStore не должны подражать неймингу обработчиков компонентов
+
+В react-компонентах для обработчиков [используются префиксы on и handle](../../react/logic#обработчики-с-префиксом-handle).
+В UIStore эти префиксы должны использоваться только при семантической необходимости.
+
+**✨ Мотивация**
+
+UIStore не зависит от react-компонента.
+Методы UIStore не являются обработчиками для react-компонентов.
+
+**🤖 Автоматизация**
+
+Не имплементировано в eslint-config
+
+**✅ Valid**
+
+```
+├── Cart/
+|    ├── UIStore/ 
+|    |    |── UIStore.ts
+|    |    └── index.ts
+|    ├── Cart.tsx
+|    └── index.ts
+```
+
+```Cart/UIStore/UIStore.ts```
+```ts
+import { SwitchStore } from './stores';
+
+class UIStore {
+  constructor() {}
+  
+  public deleteItem = () => {};
+};
+
+export const createUIStore = () => new UIStore();
+```
+
+```Cart/Cart/Cart.tsx```
+```tsx
+import { useState } from 'react';
+import { createUIStore } from './UIStore';
+
+const DeleteItem = () => {
+  const [{ deleteItem }] = useState(createUIStore);
+
+  return (
+    <Button onClick={deleteItem}>Удалить</Button>
+  );
+};
+```
+
+**❌ Invalid**
+
+```
+├── Cart/
+|    ├── UIStore/ 
+|    |    |── UIStore.ts
+|    |    └── index.ts
+|    ├── Cart.tsx
+|    └── index.ts
+```
+
+```Cart/UIStore/UIStore.ts```
+```ts
+import { SwitchStore } from './stores';
+
+class UIStore {
+  constructor() {}
+  
+  // "handle" префикс в данном случае указывает на то, что это обработчик для react-компонента
+  // UIStore ничего не знает о UI, поэтому префикса в данном случае быть не должно
+  public handleDeleteItem = () => {};
+};
+
+export const createUIStore = () => new UIStore();
+```
+
+```Cart/Cart/Cart.tsx```
+```tsx
+import { useState } from 'react';
+import { createUIStore } from './UIStore';
+
+const DeleteItem = () => {
+  const [{ handleDeleteItem }] = useState(createUIStore);
+
+  return (
+    <Button onClick={handleDeleteItem}>Удалить</Button>
+  );
 };
 ```
