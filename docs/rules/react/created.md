@@ -122,3 +122,6 @@ export const Info = () => {
 };
 ```
 
+## Работа с constants
+
+Единые правила описаны в разделе [Constants](../constants).
