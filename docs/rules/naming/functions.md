@@ -2,8 +2,6 @@
 
 ## Функции и методы должны начинаться с глагола
 
-Исключение: [Функции и методы, возвращающие Boolean](#функции-и-методы-возвращающие-boolean-должны-содержать-префикс-указывающий-на-принадлежность-к-boolean).
-
 **✨ Мотивация**
 
 Глагол в названии функции или метода позволяет быстро понять выполняемое действие.
@@ -57,13 +55,14 @@ const toViewFormatter = () => {};
 const refreshingData = () => {};
 ```
 
-## Функции и методы, возвращающие Boolean должны содержать префикс, указывающий на принадлежность к Boolean
+### Функции и методы, возвращающие Boolean должны начинаться с глагола
+
+Глагол в начале функции должен указывать на цель проводимой проверки.
 
 **✨ Мотивация**
 
-Идентификация функций и методов, возвращающих Boolean.
-Именование функций идентично [именованию Boolean переменных](./vars#boolean-переменные-должны-иметь-префикс-указывающий-на-принадлежность-к-boolean), 
-но правило считаем как стандарт, который привычно используется в стандарте языка (например: `isNaN`, `hasOwnProperty`).
+Добавление глагола в начало функции позволяет избежать пересечений с Boolean переменными.
+Самый распространенный глагол: check.
 
 **🤖 Автоматизация**
 
@@ -72,33 +71,54 @@ const refreshingData = () => {};
 **✅ Valid**
 
 ```ts
-const isEmpty = (value: unknown) => remeda.isEmpty(value);
+const checkIsEmpty = (value: unknown) => remeda.isEmpty(value);
 
-const wasRemoved = (obj?: Record<string, unknown>): obj is undefined =>
+const checkWasRemoved = (obj?: Record<string, unknown>): obj is undefined =>
     obj === undefined;
 
-const hasID = (obj: { id?: string }) =>
-    Boolean(obj.id);
+const validateID = (id: string) =>
+    id.length === 2;
 ```
 
 ```ts
 class Example {
-  public isEmpty = (value: unknown) => remeda.isEmpty(value);
+  public checkIsEmpty = (value: unknown) => remeda.isEmpty(value);
 
-  public wasRemoved = (obj?: Record<string, unknown>): obj is undefined =>
+  public checkWasRemoved = (obj?: Record<string, unknown>): obj is undefined =>
     obj === undefined;
 
-  public hasID = (obj: { id?: string }) => Boolean(obj.id);
+  public validateID = (obj: { id?: string }) => Boolean(obj.id);
 }
 ```
 
 **❌ Invalid**
 
 ```ts
-const empty = (value: unknown) => remeda.isEmpty(value);
+// имя идентично переменной
+const isEmpty = (value: unknown) => remeda.isEmpty(value);
 
-const checkRemoved = (obj?: Record<string, unknown>): obj is undefined =>
+// имя идентично переменной
+const hasRemoved = (obj?: Record<string, unknown>): obj is undefined =>
     obj === undefined;
+
+// нет глагола
+const removed = (obj?: Record<string, unknown>): obj is undefined =>
+    obj === undefined;
+```
+
+```tsx
+// приходится переименовывать функцию из-за пересечений с параметрами и переменными
+import { isEmpty as checkIsEmpty } from 'utils';
+
+export const UserInfo = ({ data, isEmpty }: Props) => {
+  const isEmptyData = isEmpty && checkIsEmpty(data);
+
+  return (
+    <Grid>
+      {isEmpty && <NoData />}
+    </Grid>
+  );
+};
 ```
 
 ## Запрещено использовать в названиях существительные во множественном числе только с добавлением окончания
