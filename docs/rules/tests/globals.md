@@ -6,7 +6,8 @@ Global namespace позволяют описывать `describe`, `it` и тп 
 
 **🤖 Автоматизация**
 
-Не имплементировано в eslint-config.
+- [Codemode](https://github.com/kaluga-astral/style-guide/tree/main/codemodes/vitestGlobals) позволяет привести код в описанный вид
+- Не имплементировано в eslint-config.
 
 **✨ Мотивация**
 
