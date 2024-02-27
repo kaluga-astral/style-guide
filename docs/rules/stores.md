@@ -40,3 +40,8 @@ export class PaymentStore {}
 |    |    └── index.ts
 |    └── index.ts
 ```
+
+## Mobx Stores
+
+Mobx Stores подчиняются [единым правилам js classes](./classes).
+
