@@ -1,6 +1,6 @@
 # Validations
 
-## Валидация должна находится в отдельном файле
+## Валидация должна находится в отдельном файле `validation`
 
 - Если валидация используется в `useLogic`, то `validation` файл должен находится в директории `useLogic`
 - Если валидация используется в `UIStore`, то `validation` файл должен находится в директории `UIStore`
@@ -22,22 +22,75 @@
 ├── Cart/
 |    ├── UIStore/ 
 |    |    |── UIStore.ts
-|    |    |── useLogic.test.ts
 |    |    |── validation.ts
 |    |    └── index.ts
 |    ├── Cart.tsx
 |    └── index.ts
 ```
 
-Для `UIStore`:
+Для `useLogic`:
 ```
-├── Cart/
-|    ├── UIStore/ 
-|    |    |── UIStore.ts
-|    |    |── useLogic.test.ts
+├── BookForm/
+|    ├── useLogic/ 
+|    |    |── useLogic.ts
+|    |    |── types.ts
 |    |    |── validation.ts
 |    |    └── index.ts
-|    ├── Cart.tsx
+|    ├── BookForm.tsx
 |    └── index.ts
 ```
 
+### Для `useLogic` создается отдельный файл `types` для валидируемых данных
+
+**✨ Мотивация**
+
+Если не вынести валидируемые типы данных в отдельный файл `types`, то возникнут циклические зависимости между
+`useLogic` и `validation`.
+
+**✅ Valid**
+
+```
+├── BookForm/
+|    ├── useLogic/ 
+|    |    |── useLogic.ts
+|    |    |── types.ts
+|    |    |── validation.ts
+|    |    └── index.ts
+|    ├── BookForm.tsx
+|    └── index.ts
+```
+
+```BookForm/useLogic/types.ts```
+```ts
+export type BookFormValues = {
+  name: string;
+}
+```
+
+## Валидации в `domain/validations` не должны иметь префиксы или постфиксы `validation`
+
+**✨ Мотивация**
+
+По директории `validations` можно понять контекст.
+
+**✅ Valid**
+
+```
+├── domain/
+|    ├── validations/ 
+|    |    |── userSchema/
+|    |    |── validateTextField/
+|    |    └── index.ts
+|    └── index.ts
+```
+
+**❌ Invalid**
+
+```
+├── domain/
+|    ├── validations/ 
+|    |    |── userValidationSchema/
+|    |    |── textFieldValidationRule/
+|    |    └── index.ts
+|    └── index.ts
+```
