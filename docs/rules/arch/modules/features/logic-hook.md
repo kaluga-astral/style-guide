@@ -56,7 +56,7 @@ export const useLogic = () => {};
 
 ## В компоненте должен быть только один хук - `useLogic`
 
-Все остальные хуки должны являться частью имплементации `useLogic` и находиться в директории `useLogic/hooks`
+Все остальные хуки должны являться частью имплементации `useLogic` и находиться в директории `useLogic/hooks`.
 
 **✨ Мотивация**
 
@@ -109,3 +109,35 @@ export const useLogic = () => {
 |    └── index.ts
 ```
 
+### Хук для форм должен иметь название `useLogic`
+
+**✨ Мотивация**
+
+Хук для форм - это логика компонента.
+
+
+**✅ Valid**
+
+```
+├── BookForm/
+|    ├── useLogic/ 
+|    |    |── useLogic.ts
+|    |    |── types.ts
+|    |    |── validation.ts
+|    |    └── index.ts
+|    ├── BookForm.tsx
+|    └── index.ts
+```
+
+**❌ Invalid**
+
+```
+├── BookForm/
+|    ├── useForm/ 
+|    |    |── useForm.ts
+|    |    |── types.ts
+|    |    |── validation.ts
+|    |    └── index.ts
+|    ├── BookForm.tsx
+|    └── index.ts
+```
