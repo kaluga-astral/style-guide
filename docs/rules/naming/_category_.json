@@ -1,0 +1,8 @@
+{
+  "label": "Naming",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "Правила именования переменных, свойств, функций, методов"
+  }
+}
