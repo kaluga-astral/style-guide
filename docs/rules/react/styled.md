@@ -53,7 +53,6 @@ export const Footer = styled.footer`
 
 **❌ Invalid**
 
-
 ```UserInfo.tsx```
 ```tsx
 const Wrapper = styled.section`
@@ -267,4 +266,139 @@ export const ButtonRoot = styled(Button)`
 import { ButtonRoot } from './styles';
 
 const Button = () => <ButtonRoot />;
+```
+
+## Типы для Props styled-компонента не должны зависеть от Props корневого компонента
+
+**✨ Мотивация**
+
+Зона ответственности styled-компонента - стилизация.
+Прямое использование пропсов корневого компонента в styled нарушает принцип единственной ответственности (SOLID):
+styled-компонент начинает знать о public API корневого компонента и инкапсулировать знания о логике.
+
+**🤖 Автоматизация**
+
+Не имплементировано в eslint-config.
+
+**✅ Valid**
+
+```
+├── UserInfo/
+|    ├── UserInfo.tsx
+|    ├── styles.ts
+|    └── index.ts
+```
+
+```UserInfo.tsx```
+```tsx
+import { Footer, Header, Wrapper } from './styles';
+
+type UserInfoProps = {
+  error?: Error;
+};
+
+const UserInfo = ({ error }: UserInfoProps) => {
+  return (
+    <Wrapper>
+      <Header>Header</Header>
+      <Footer isError={Boolean(error)} />
+    </Wrapper>
+  );
+};
+```
+
+```styles.ts```
+```tsx
+type FooterProps = {
+  isError: boolean;
+};
+
+export const Footer = styled.footer<FooterProps>`
+  background-color: ${({ isError }) => (isError ? 'red' : 'white')};
+`;
+```
+
+**❌ Invalid**
+
+```
+├── UserInfo/
+|    ├── UserInfo.tsx
+|    ├── styles.ts
+|    └── index.ts
+```
+
+```UserInfo.tsx```
+```tsx
+import { Footer, Header, Wrapper } from './styles';
+
+export type UserInfoProps = {
+  error?: Error;
+};
+
+const UserInfo = ({ error }: UserInfoProps) => {
+  return (
+    <Wrapper>
+      <Header>Header</Header>
+      <Footer error={error} />
+    </Wrapper>
+  );
+};
+```
+
+```styles.ts```
+```tsx
+// Циклическая зависимость
+import { type UserInfoProps } from './UserInfo';
+
+// error Prop в данном случае не оносится к стилизации, он относится к логике врехнеуровнего компонента
+type FooterProps = Pick<UserInfoProps, 'error'>;
+
+// Footer жестко зацеплен с UserInfo. Любое изменение public API будет провоцировать изменения в Footer
+export const Footer = styled.footer<FooterProps>`
+  background-color: ${({ error }) => (error ? 'red' : 'white')};
+`;
+```
+
+### Для styled-оберток допустима связь с оборачиваемым компонентом
+
+**✅ Valid**
+
+```
+├── UserInfo/
+|    ├── UserInfo.tsx
+|    ├── styles.ts
+|    └── index.ts
+```
+
+```UserInfo.tsx```
+```tsx
+import { Footer, StyledButton } from './styles';
+
+type UserInfoProps = {
+  error?: Error;
+};
+
+const UserInfo = ({ error }: UserInfoProps) => {
+  return (
+    <Wrapper>
+      <Header>Header</Header>
+      <StyledButton isError={Boolean(error)} variant="light">
+        Click
+      </StyledButton>
+    </Wrapper>
+  );
+};
+```
+
+```styles.ts```
+```tsx
+import { Button, type ButtonProps } from '@astral/ui'
+
+type StyledButtonProps = ButtonProps & {
+  isError: boolean;
+};
+
+export const StyledButton = styled<StyledButtonProps>(Button)`
+  color: ${({ isError }) => (isError ? 'red' : 'white')};
+`;
 ```
