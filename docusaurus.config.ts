@@ -44,6 +44,15 @@ const config: Config = {
   themeConfig: {
     // Replace with your project's social card
     image: 'img/social-card.png',
+    headTags: [
+      {
+        tagName: 'meta',
+        attributes: {
+          name: 'description',
+          content: 'Стандарты frontend-кода Астрал-Софт',
+        },
+      }
+    ],
     navbar: {
       title: 'Frontend Style Guide',
       logo: {
