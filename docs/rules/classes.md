@@ -1,5 +1,90 @@
 # JS Classes
 
+## Каждый класс должен иметь свою директорию
+
+**✨ Мотивация**
+
+Отдельная директория для каждого class позволяет:
+- Установить однозначную связь class с его тестами, constants, enums, utils...
+- Декомпозировать и расширять class, без необходимости рефакторинга (добавление тестов, констант, дочерних классов...)
+- Переносить классы со связанными сущностями в другие слои приложения без необходимости рефакторинга
+
+**🤖 Автоматизация**
+
+Не имплементировано в eslint-config.
+
+**✅ Valid**
+
+```
+├── services/
+|    |── FileService/
+|    |    |── AsyncFileService/
+|    |    |── utils/
+|    |    |── FileService.ts
+|    |    |── FileService.test.ts
+|    |    |── constants.ts
+|    |    |── enums.ts
+|    |    └── index.ts
+|    |── ErrorService/
+|    └── index.ts
+```
+
+**❌ Invalid**
+
+```
+├── services/
+|    |── FileService.ts
+|    |── ErrorService.ts
+|    └── index.ts
+```
+
+## Директория, содержащая class должна начинаться с заглавной буквы
+
+**✨ Мотивация**
+
+Позволяет идентифицировать js class.
+
+**🤖 Автоматизация**
+
+Не имплементировано в eslint-config.
+
+**✅ Valid**
+
+```
+├── services/
+|    |── FileService/
+|    |    |── FileService.ts
+|    |    └── index.ts
+|    |── ErrorService/
+|    |    |── ErrorService.ts
+|    |    └── index.ts
+|    └── index.ts
+```
+
+**❌ Invalid**
+
+```
+├── services/
+|    |── fileService/
+|    |    |── FileService.ts
+|    |    └── index.ts
+|    |── errorService/
+|    |    |── ErrorService.ts
+|    |    └── index.ts
+|    └── index.ts
+```
+
+```
+├── services/
+|    |── fileService/
+|    |    |── fileService.ts
+|    |    └── index.ts
+|    |── errorService/
+|    |    |── errorService.ts
+|    |    └── index.ts
+|    └── index.ts
+```
+
 ## Инициализация параметров конструктора осуществляется с помощью `private readonly`
 
 **✨ Мотивация**
