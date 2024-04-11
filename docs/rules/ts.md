@@ -176,8 +176,8 @@ enum userType {
 export const API_URL = 'astral.ru';
 
 export enum UserType {
-    NoAuth,
-    Auth
+  NoAuth,
+  Auth
 }
 ```
 
