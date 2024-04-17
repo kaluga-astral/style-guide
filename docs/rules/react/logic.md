@@ -15,7 +15,7 @@
 ```tsx
 const Cart = ({ list, onSetSum }: Props) => {
   // calcSum - не обработчик, поэтому префикс не нужен
-  const calcSum = () => list.reduce((sum, { price }) => sum + price, 0);
+  const { calcSum } = useLogic();
 
   const handleClickPay = () => {
     onSetSum(calcSum(list));
@@ -35,8 +35,8 @@ const Cart = ({ list, onSetSum }: Props) => {
 ```tsx
 
 const Cart = ({ list, onSetSum }: Props) => {
-  // Это не обработчик
-  const handleCalcSum = () => list.reduce((sum, { price }) => sum + price, 0);
+  // handleCalcSum не обработчик, префикса быть не должно
+  const { handleCalcSum } = useLogic();
 
   // Обработчик не по формату
   const clickPayHandler = () => {
