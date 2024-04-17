@@ -23,7 +23,7 @@ const Cart = ({ list, onSetSum }: Props) => {
 
   return (
     <section>
-      <Button onClick={handleClickButton}>Оплатить</Button>
+      <Button onClick={handleClickPay}>Оплатить</Button>
     </section>
   );
 };
