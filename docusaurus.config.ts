@@ -23,7 +23,14 @@ const config: Config = {
   onBrokenMarkdownLinks: 'warn',
   trailingSlash: false,
 
-  plugins: [require.resolve('docusaurus-lunr-search')],
+  plugins: [
+    [
+      require.resolve('docusaurus-lunr-search'),
+      {
+        languages: ['en', 'ru'],
+      }
+    ]
+  ],
 
   presets: [
     [
