@@ -151,6 +151,10 @@ const config: Config = {
     algolia: {
       appId: process.env.ALGOLIA_APP_ID || 'test',
       apiKey: process.env.ALGOLIA_API_KEY || 'test',
+      replaceSearchResultPathname: {
+        from: '/style-guide/',
+        to: '/',
+      },
       indexName: 'style-guide',
       contextualSearch: true,
     },
