@@ -124,3 +124,50 @@ export class UserRepository {
     );
 }
 ```
+
+## Ключи кэша должны быть в camelCase
+
+**✨ Мотивация**
+
+camelCase позволяет копировать название свойства в ее значение без дополнительных действий.
+
+**🤖 Автоматизация**
+
+Не имплементировано в eslint-config
+
+**✅ Valid**
+
+```ts
+export class UserRepository {
+  private readonly contactInfoCacheKey = 'contactInfoCacheKey';
+
+  constructor(
+    private readonly userNetworkSources: UserNetworkSources,
+    private readonly cache: CacheService,
+  ) {}
+
+  public getContactInfoQuery = () =>
+    this.cache.createQuery<UserRepositoryDTO.UserContactDTO>(
+      [this.contactInfoCacheKey],
+      this.userNetworkSources.getContactInfo,
+    );
+}
+```
+
+**❌ Invalid**
+```ts
+export class UserRepository {
+  private readonly contactInfoCacheKey = 'contact-info';
+
+  constructor(
+    private readonly userNetworkSources: UserNetworkSources,
+    private readonly cache: CacheService,
+  ) {}
+
+  public getContactInfoQuery = () =>
+    this.cache.createQuery<UserRepositoryDTO.UserContactDTO>(
+      [this.contactInfoCacheKey],
+      this.userNetworkSources.getContactInfo,
+    );
+}
+```
