@@ -35,3 +35,16 @@
 |    |── formatDate.ts
 |    └── index.ts
 ```
+
+#### Исключения
+
+Приватные функции, являющиеся частью реализации экспортируемой функции, могут находиться в одном файле.
+
+```
+const parseVersion = () => {}
+...
+export const compareVersion = () => {
+    const v = parseVersion()
+    ...
+}
+```
