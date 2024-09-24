@@ -33,34 +33,37 @@
 ├── BookForm/
 |    ├── useLogic/ 
 |    |    |── useLogic.ts
-|    |    |── types.ts
 |    |    |── validation.ts
 |    |    └── index.ts
 |    ├── BookForm.tsx
 |    └── index.ts
+|    └── types.ts
 ```
 
-### Для `useLogic` создается отдельный файл `types` для валидируемых данных
+### Для формы создается отдельный файл `types` для валидируемых данных
 
 **✨ Мотивация**
 
 Если не вынести валидируемые типы данных в отдельный файл `types`, то возникнут циклические зависимости между
-`useLogic` и `validation`.
+`useLogic` , `validation`, `UIStore`.
 
 **✅ Valid**
 
 ```
 ├── BookForm/
+|    ├── UIStore
+|    |    |── UIStore.ts
+|    |    |── index.ts
 |    ├── useLogic/ 
 |    |    |── useLogic.ts
-|    |    |── types.ts
 |    |    |── validation.ts
 |    |    └── index.ts
 |    ├── BookForm.tsx
 |    └── index.ts
+|    └── types.ts
 ```
 
-```BookForm/useLogic/types.ts```
+```BookForm/types.ts```
 ```ts
 export type BookFormValues = {
   name: string;
